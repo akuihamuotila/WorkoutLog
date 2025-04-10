@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkoutLog</title>
+</head>
+<body>
+    <h1>Welcome, <span th:text="${username}"></span>!</h1>
+
+    <h2>Your workouts:</h2>
+    <ul>
+        <li th:each="workout : ${workouts}" th:text="${workout.date}"></li>
+    </ul>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
