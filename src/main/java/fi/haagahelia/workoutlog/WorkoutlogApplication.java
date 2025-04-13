@@ -21,6 +21,7 @@ public class WorkoutlogApplication {
 
     @Bean
     public CommandLineRunner demo(UserRepository urepository, BCryptPasswordEncoder encoder) {
+        // Create users with different roles
         return (args) -> {
             if (urepository.findByUsername("user1") == null) {
                 urepository.save(new User("user1",
@@ -35,17 +36,19 @@ public class WorkoutlogApplication {
 
 	@Bean
 	public CommandLineRunner data(UserRepository urepo, WorkoutRepository wrepo, BCryptPasswordEncoder encoder) {
+        // Create a default user and workout if they don't exist
 		return (args) -> {
 			if (urepo.findByUsername("user1") == null) {
 				User user = new User("user1", encoder.encode("userpass"), "USER");
 				urepo.save(user);
-				wrepo.save(new Workout(user)); // treeni tälle käyttäjälle
+				wrepo.save(new Workout(user));
 			}
 		};
 	}
 
     @Bean
     public CommandLineRunner loadData(ExerciseRepository exerciseRepository) {
+        // Load default exercises if the repository is empty
         return (args) -> {
             if (exerciseRepository.count() == 0) {
                 exerciseRepository.save(new Exercise("Bench Press", "push"));

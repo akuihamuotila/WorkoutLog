@@ -17,8 +17,9 @@ public class WorkoutExerciseController {
 
     @Autowired
     private WorkoutExerciseRepository workoutExerciseRepository;
-
+    
     @GetMapping("/workout/{id}/addexercise")
+    // Method to show the form for adding an exercise to a workout
     public String showAddExerciseForm(@PathVariable("id") Long workoutId, Model model) {
         Workout workout = workoutRepository.findById(workoutId)
             .orElseThrow(() -> new IllegalArgumentException("Invalid workout Id:" + workoutId));
@@ -28,6 +29,7 @@ public class WorkoutExerciseController {
     }
 
     @PostMapping("/workout/{id}/addexercise")
+    // Method to add an exercise to a workout
     public String addExerciseToWorkout(@PathVariable("id") Long workoutId,
                                        @RequestParam("exerciseId") Long exerciseId) {
         Workout workout = workoutRepository.findById(workoutId)
@@ -42,6 +44,7 @@ public class WorkoutExerciseController {
     }
 
     @PostMapping("/workoutexercise/delete/{id}")
+    // Method to delete a workout exercise
     public String deleteWorkoutExercise(@PathVariable("id") Long id) {
         WorkoutExercise we = workoutExerciseRepository.findById(id).orElse(null);
         if (we != null) {

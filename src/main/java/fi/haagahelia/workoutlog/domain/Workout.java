@@ -22,12 +22,13 @@ public class Workout {
     public Workout() {
         this.date = LocalDate.now();
     }
-
+    // Constructor for creating a new workout for a specific user
     public Workout(User user) {
         this.user = user;
         this.date = LocalDate.now();
     }
 
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

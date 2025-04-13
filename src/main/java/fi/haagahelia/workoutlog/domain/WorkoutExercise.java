@@ -21,12 +21,13 @@ public class WorkoutExercise {
     private List<WorkoutSet> sets;
 
     public WorkoutExercise() {}
-
+    // Constructor for creating a new WorkoutExercise
     public WorkoutExercise(Workout workout, Exercise exercise) {
         this.workout = workout;
         this.exercise = exercise;
     }
 
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

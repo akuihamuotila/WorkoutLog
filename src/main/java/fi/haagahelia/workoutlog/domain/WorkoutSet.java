@@ -20,7 +20,7 @@ public class WorkoutSet {
     private Exercise exercise;
 
     public WorkoutSet() {}
-
+    // Constructor for creating a new WorkoutSet
     public WorkoutSet(int reps, double weight, WorkoutExercise workoutExercise, Exercise exercise) {
         this.reps = reps;
         this.weight = weight;
@@ -28,6 +28,7 @@ public class WorkoutSet {
         this.exercise = exercise;
     }
 
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

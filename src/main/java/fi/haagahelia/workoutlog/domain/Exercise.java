@@ -10,19 +10,20 @@ public class Exercise {
     private Long id;
 
     private String name;
-    private String category; // esim. push/pull/legs/core/cardio
+    private String category;
 
+    // OneToMany relationship with WorkoutSet
     @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<WorkoutSet> sets;
 
     public Exercise() {}
-
+    // Constructor for creating a new exercise
     public Exercise(String name, String category) {
         this.name = name;
         this.category = category;
     }
 
-    // getterit ja setterit
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

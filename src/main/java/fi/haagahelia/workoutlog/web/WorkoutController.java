@@ -23,6 +23,7 @@ public class WorkoutController {
     private UserRepository userRepository;
 
     @GetMapping("/")
+    // Method to show the home page with a list of workouts
     public String home(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         User currentUser = userRepository.findByUsername(userDetails.getUsername());
         model.addAttribute("workouts", workoutRepository.findAll());
@@ -31,11 +32,13 @@ public class WorkoutController {
     }
 
     @GetMapping("/addworkout")
+    // Method to show the form for adding a new workout
     public String showAddWorkoutForm() {
         return "addworkout";
     }
 
     @PostMapping("/addworkout")
+    // Method to add a new workout
     public String addWorkout(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @AuthenticationPrincipal UserDetails userDetails) {
         User user = userRepository.findByUsername(userDetails.getUsername());
         Workout workout = new Workout();
@@ -46,6 +49,7 @@ public class WorkoutController {
     }
 
     @PostMapping("/workout/delete/{id}")
+    // Method to delete a workout
     public String deleteWorkout(@PathVariable("id") Long id) {
         workoutRepository.deleteById(id);
         return "redirect:/";

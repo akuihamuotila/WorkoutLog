@@ -14,13 +14,16 @@ public class WebSecurityConfig {
     private final UserDetailsService userDetailsService;
 
     public WebSecurityConfig(UserDetailsService uds) {
+        // Constructor for WebSecurityConfig
         this.userDetailsService = uds;
     }
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+        // Configures the security filter chain
+        // This method is called by Spring Security to configure the security settings
         http
-            .userDetailsService(userDetailsService); // Use the userDetailsService
+            .userDetailsService(userDetailsService);
         http
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/h2-console/**").permitAll()
@@ -40,9 +43,10 @@ public class WebSecurityConfig {
 
         return http.build();
     }
-
+    
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
+        // Bean for password encoding
         return new BCryptPasswordEncoder();
     }
 }
