@@ -20,12 +20,14 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
+            .userDetailsService(userDetailsService); // Use the userDetailsService
+        http
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )
             .csrf(csrf -> csrf.disable())
-            .headers(headers -> headers.frameOptions().disable())
+            .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
             .formLogin(form -> form
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true)
