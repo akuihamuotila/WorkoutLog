@@ -12,23 +12,22 @@ public class WorkoutSet {
     private double weight;
 
     @ManyToOne
+    @JoinColumn(name = "workout_exercise_id")
+    private WorkoutExercise workoutExercise;
+
+    @ManyToOne
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
-    @ManyToOne
-    @JoinColumn(name = "workout_id")
-    private Workout workout;
-
     public WorkoutSet() {}
 
-    public WorkoutSet(int reps, double weight, Exercise exercise, Workout workout) {
+    public WorkoutSet(int reps, double weight, WorkoutExercise workoutExercise, Exercise exercise) {
         this.reps = reps;
         this.weight = weight;
+        this.workoutExercise = workoutExercise;
         this.exercise = exercise;
-        this.workout = workout;
     }
 
-    // getterit ja setterit
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -38,9 +37,9 @@ public class WorkoutSet {
     public double getWeight() { return weight; }
     public void setWeight(double weight) { this.weight = weight; }
 
+    public WorkoutExercise getWorkoutExercise() { return workoutExercise; }
+    public void setWorkoutExercise(WorkoutExercise workoutExercise) { this.workoutExercise = workoutExercise; }
+
     public Exercise getExercise() { return exercise; }
     public void setExercise(Exercise exercise) { this.exercise = exercise; }
-
-    public Workout getWorkout() { return workout; }
-    public void setWorkout(Workout workout) { this.workout = workout; }
 }

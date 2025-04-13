@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercises</title>
+</head>
+<body>
+<h2>Exercises</h2>
+<table>
+    <tr><th>Name</th><th>Category</th></tr>
+    <tr th:each="exercise : ${exercises}">
+        <td th:text="${exercise.name}">name</td>
+        <td th:text="${exercise.category}">category</td>
+    </tr>
+</table>
+<a th:href="@{/addexercise}">Add Exercise</a>
+</body>
+</html>

@@ -8,9 +8,36 @@
 <body>
     <h1>Welcome, <span th:text="${username}"></span>!</h1>
 
+    <p><a th:href="@{/addworkout}">Add New Workout</a></p>
+
     <h2>Your workouts:</h2>
     <ul>
-        <li th:each="workout : ${workouts}" th:text="${workout.date}"></li>
+        <li th:each="workout : ${workouts}">
+            <span th:text="${workout.date}"></span>
+            |
+            <a th:href="@{'/workout/' + ${workout.id} + '/addexercise'}">Add exercise</a>
+            <form th:action="@{'/workout/delete/' + ${workout.id}}" method="post" class="inline-form">
+                <button type="submit">Delete</button>
+            </form>
+            <ul>
+                <li th:each="we : ${workout.workoutExercises}">
+                    <span th:text="${we.exercise.name}"></span>
+                    |
+                    <a th:href="@{'/workoutExercise/' + ${we.id} + '/addset'}">Add set</a>
+                    <form th:action="@{'/workoutexercise/delete/' + ${we.id}}" method="post" class="inline-form">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <ul>
+                        <li th:each="set : ${we.sets}">
+                            <span th:text="'Reps: ' + ${set.reps} + ', Weight: ' + ${set.weight} + ' kg'"></span>
+                            <form th:action="@{'/workoutset/delete/' + ${set.id}}" method="post" class="inline-form">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
     </ul>
 
     <form th:action="@{/logout}" method="post">

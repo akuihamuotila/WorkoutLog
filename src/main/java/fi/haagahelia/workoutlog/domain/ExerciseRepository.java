@@ -1,6 +1,8 @@
 package fi.haagahelia.workoutlog.domain;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
+public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
+    List<Exercise> findAll();
 }

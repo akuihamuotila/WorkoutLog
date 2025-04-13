@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Workout</title>
+</head>
+<body>
+<h2>Add Workout</h2>
+<form th:action="@{/addworkout}" method="post">
+    <label>Date:
+        <input type="date" name="date" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"/>
+    </label>
+    <button type="submit">Add Workout</button>
+</form>
+<a th:href="@{/}">Back to homepage</a>
+</body>
+</html>

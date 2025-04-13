@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Exercise</title>
+</head>
+<body>
+<h2>Add Exercise</h2>
+<form th:action="@{/addexercise}" th:object="${exercise}" method="post">
+    <label>Name: <input type="text" th:field="*{name}" /></label><br/>
+    <label>Category: <input type="text" th:field="*{category}" /></label><br/>
+    <button type="submit">Save</button>
+</form>
+<a th:href="@{/exercises}">Back</a>
+</body>
+</html>

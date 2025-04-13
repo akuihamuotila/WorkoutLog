@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import fi.haagahelia.workoutlog.domain.UserRepository;
 import fi.haagahelia.workoutlog.domain.Workout;
 import fi.haagahelia.workoutlog.domain.WorkoutRepository;
+import fi.haagahelia.workoutlog.domain.Exercise;
+import fi.haagahelia.workoutlog.domain.ExerciseRepository;
 import fi.haagahelia.workoutlog.domain.User;
 
 @SpringBootApplication
@@ -41,4 +43,15 @@ public class WorkoutlogApplication {
 			}
 		};
 	}
+
+    @Bean
+    public CommandLineRunner loadData(ExerciseRepository exerciseRepository) {
+        return (args) -> {
+            if (exerciseRepository.count() == 0) {
+                exerciseRepository.save(new Exercise("Bench Press", "push"));
+                exerciseRepository.save(new Exercise("Deadlift", "pull"));
+                exerciseRepository.save(new Exercise("Squat", "legs"));
+            }
+        };
+    }
 }

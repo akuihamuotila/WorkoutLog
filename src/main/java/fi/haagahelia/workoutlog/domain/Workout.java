@@ -17,7 +17,7 @@ public class Workout {
     private User user;
 
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
-    private List<WorkoutSet> sets;
+    private List<WorkoutExercise> workoutExercises;
 
     public Workout() {
         this.date = LocalDate.now();
@@ -28,7 +28,6 @@ public class Workout {
         this.date = LocalDate.now();
     }
 
-    // getterit ja setterit
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -38,6 +37,6 @@ public class Workout {
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
 
-    public List<WorkoutSet> getSets() { return sets; }
-    public void setSets(List<WorkoutSet> sets) { this.sets = sets; }
+    public List<WorkoutExercise> getWorkoutExercises() { return workoutExercises; }
+    public void setWorkoutExercises(List<WorkoutExercise> workoutExercises) { this.workoutExercises = workoutExercises; }
 }
